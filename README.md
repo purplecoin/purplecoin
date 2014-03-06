@@ -1,0 +1,4 @@
+purplecoin
+==========
+
+PurpleCoin
