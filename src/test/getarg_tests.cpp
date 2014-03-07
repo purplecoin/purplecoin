@@ -25,143 +25,143 @@ ResetArgs(const std::string& strArg)
 
 BOOST_AUTO_TEST_CASE(boolarg)
 {
-    ResetArgs("-BAR");
-    BOOST_CHECK(GetBoolArg("-BAR"));
-    BOOST_CHECK(GetBoolArg("-BAR", false));
-    BOOST_CHECK(GetBoolArg("-BAR", true));
+    ResetArgs("-PURP");
+    BOOST_CHECK(GetBoolArg("-PURP"));
+    BOOST_CHECK(GetBoolArg("-PURP", false));
+    BOOST_CHECK(GetBoolArg("-PURP", true));
 
     BOOST_CHECK(!GetBoolArg("-fo"));
     BOOST_CHECK(!GetBoolArg("-fo", false));
     BOOST_CHECK(GetBoolArg("-fo", true));
 
-    BOOST_CHECK(!GetBoolArg("-BARo"));
-    BOOST_CHECK(!GetBoolArg("-BARo", false));
-    BOOST_CHECK(GetBoolArg("-BARo", true));
+    BOOST_CHECK(!GetBoolArg("-PURPo"));
+    BOOST_CHECK(!GetBoolArg("-PURPo", false));
+    BOOST_CHECK(GetBoolArg("-PURPo", true));
 
-    ResetArgs("-BAR=0");
-    BOOST_CHECK(!GetBoolArg("-BAR"));
-    BOOST_CHECK(!GetBoolArg("-BAR", false));
-    BOOST_CHECK(!GetBoolArg("-BAR", true));
+    ResetArgs("-PURP=0");
+    BOOST_CHECK(!GetBoolArg("-PURP"));
+    BOOST_CHECK(!GetBoolArg("-PURP", false));
+    BOOST_CHECK(!GetBoolArg("-PURP", true));
 
-    ResetArgs("-BAR=1");
-    BOOST_CHECK(GetBoolArg("-BAR"));
-    BOOST_CHECK(GetBoolArg("-BAR", false));
-    BOOST_CHECK(GetBoolArg("-BAR", true));
+    ResetArgs("-PURP=1");
+    BOOST_CHECK(GetBoolArg("-PURP"));
+    BOOST_CHECK(GetBoolArg("-PURP", false));
+    BOOST_CHECK(GetBoolArg("-PURP", true));
 
     // New 0.6 feature: auto-map -nosomething to !-something:
-    ResetArgs("-noBAR");
-    BOOST_CHECK(!GetBoolArg("-BAR"));
-    BOOST_CHECK(!GetBoolArg("-BAR", false));
-    BOOST_CHECK(!GetBoolArg("-BAR", true));
+    ResetArgs("-noPURP");
+    BOOST_CHECK(!GetBoolArg("-PURP"));
+    BOOST_CHECK(!GetBoolArg("-PURP", false));
+    BOOST_CHECK(!GetBoolArg("-PURP", true));
 
-    ResetArgs("-noBAR=1");
-    BOOST_CHECK(!GetBoolArg("-BAR"));
-    BOOST_CHECK(!GetBoolArg("-BAR", false));
-    BOOST_CHECK(!GetBoolArg("-BAR", true));
+    ResetArgs("-noPURP=1");
+    BOOST_CHECK(!GetBoolArg("-PURP"));
+    BOOST_CHECK(!GetBoolArg("-PURP", false));
+    BOOST_CHECK(!GetBoolArg("-PURP", true));
 
-    ResetArgs("-BAR -noBAR");  // -BAR should win
-    BOOST_CHECK(GetBoolArg("-BAR"));
-    BOOST_CHECK(GetBoolArg("-BAR", false));
-    BOOST_CHECK(GetBoolArg("-BAR", true));
+    ResetArgs("-PURP -noPURP");  // -PURP should win
+    BOOST_CHECK(GetBoolArg("-PURP"));
+    BOOST_CHECK(GetBoolArg("-PURP", false));
+    BOOST_CHECK(GetBoolArg("-PURP", true));
 
-    ResetArgs("-BAR=1 -noBAR=1");  // -BAR should win
-    BOOST_CHECK(GetBoolArg("-BAR"));
-    BOOST_CHECK(GetBoolArg("-BAR", false));
-    BOOST_CHECK(GetBoolArg("-BAR", true));
+    ResetArgs("-PURP=1 -noPURP=1");  // -PURP should win
+    BOOST_CHECK(GetBoolArg("-PURP"));
+    BOOST_CHECK(GetBoolArg("-PURP", false));
+    BOOST_CHECK(GetBoolArg("-PURP", true));
 
-    ResetArgs("-BAR=0 -noBAR=0");  // -BAR should win
-    BOOST_CHECK(!GetBoolArg("-BAR"));
-    BOOST_CHECK(!GetBoolArg("-BAR", false));
-    BOOST_CHECK(!GetBoolArg("-BAR", true));
+    ResetArgs("-PURP=0 -noPURP=0");  // -PURP should win
+    BOOST_CHECK(!GetBoolArg("-PURP"));
+    BOOST_CHECK(!GetBoolArg("-PURP", false));
+    BOOST_CHECK(!GetBoolArg("-PURP", true));
 
     // New 0.6 feature: treat -- same as -:
-    ResetArgs("--BAR=1");
-    BOOST_CHECK(GetBoolArg("-BAR"));
-    BOOST_CHECK(GetBoolArg("-BAR", false));
-    BOOST_CHECK(GetBoolArg("-BAR", true));
+    ResetArgs("--PURP=1");
+    BOOST_CHECK(GetBoolArg("-PURP"));
+    BOOST_CHECK(GetBoolArg("-PURP", false));
+    BOOST_CHECK(GetBoolArg("-PURP", true));
 
-    ResetArgs("--noBAR=1");
-    BOOST_CHECK(!GetBoolArg("-BAR"));
-    BOOST_CHECK(!GetBoolArg("-BAR", false));
-    BOOST_CHECK(!GetBoolArg("-BAR", true));
+    ResetArgs("--noPURP=1");
+    BOOST_CHECK(!GetBoolArg("-PURP"));
+    BOOST_CHECK(!GetBoolArg("-PURP", false));
+    BOOST_CHECK(!GetBoolArg("-PURP", true));
 
 }
 
 BOOST_AUTO_TEST_CASE(stringarg)
 {
     ResetArgs("");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", ""), "");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", "eleven"), "eleven");
+    BOOST_CHECK_EQUAL(GetArg("-PURP", ""), "");
+    BOOST_CHECK_EQUAL(GetArg("-PURP", "eleven"), "eleven");
 
-    ResetArgs("-BAR -bar");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", ""), "");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", "eleven"), "");
+    ResetArgs("-PURP -bar");
+    BOOST_CHECK_EQUAL(GetArg("-PURP", ""), "");
+    BOOST_CHECK_EQUAL(GetArg("-PURP", "eleven"), "");
 
-    ResetArgs("-BAR=");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", ""), "");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", "eleven"), "");
+    ResetArgs("-PURP=");
+    BOOST_CHECK_EQUAL(GetArg("-PURP", ""), "");
+    BOOST_CHECK_EQUAL(GetArg("-PURP", "eleven"), "");
 
-    ResetArgs("-BAR=11");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", ""), "11");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", "eleven"), "11");
+    ResetArgs("-PURP=11");
+    BOOST_CHECK_EQUAL(GetArg("-PURP", ""), "11");
+    BOOST_CHECK_EQUAL(GetArg("-PURP", "eleven"), "11");
 
-    ResetArgs("-BAR=eleven");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", ""), "eleven");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", "eleven"), "eleven");
+    ResetArgs("-PURP=eleven");
+    BOOST_CHECK_EQUAL(GetArg("-PURP", ""), "eleven");
+    BOOST_CHECK_EQUAL(GetArg("-PURP", "eleven"), "eleven");
 
 }
 
 BOOST_AUTO_TEST_CASE(intarg)
 {
     ResetArgs("");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", 11), 11);
-    BOOST_CHECK_EQUAL(GetArg("-BAR", 0), 0);
+    BOOST_CHECK_EQUAL(GetArg("-PURP", 11), 11);
+    BOOST_CHECK_EQUAL(GetArg("-PURP", 0), 0);
 
-    ResetArgs("-BAR -bar");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", 11), 0);
+    ResetArgs("-PURP -bar");
+    BOOST_CHECK_EQUAL(GetArg("-PURP", 11), 0);
     BOOST_CHECK_EQUAL(GetArg("-bar", 11), 0);
 
-    ResetArgs("-BAR=11 -bar=12");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", 0), 11);
+    ResetArgs("-PURP=11 -bar=12");
+    BOOST_CHECK_EQUAL(GetArg("-PURP", 0), 11);
     BOOST_CHECK_EQUAL(GetArg("-bar", 11), 12);
 
-    ResetArgs("-BAR=NaN -bar=NotANumber");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", 1), 0);
+    ResetArgs("-PURP=NaN -bar=NotANumber");
+    BOOST_CHECK_EQUAL(GetArg("-PURP", 1), 0);
     BOOST_CHECK_EQUAL(GetArg("-bar", 11), 0);
 }
 
 BOOST_AUTO_TEST_CASE(doubledash)
 {
-    ResetArgs("--BAR");
-    BOOST_CHECK_EQUAL(GetBoolArg("-BAR"), true);
+    ResetArgs("--PURP");
+    BOOST_CHECK_EQUAL(GetBoolArg("-PURP"), true);
 
-    ResetArgs("--BAR=verbose --bar=1");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", ""), "verbose");
+    ResetArgs("--PURP=verbose --bar=1");
+    BOOST_CHECK_EQUAL(GetArg("-PURP", ""), "verbose");
     BOOST_CHECK_EQUAL(GetArg("-bar", 0), 1);
 }
 
 BOOST_AUTO_TEST_CASE(boolargno)
 {
-    ResetArgs("-noBAR");
-    BOOST_CHECK(!GetBoolArg("-BAR"));
-    BOOST_CHECK(!GetBoolArg("-BAR", true));
-    BOOST_CHECK(!GetBoolArg("-BAR", false));
+    ResetArgs("-noPURP");
+    BOOST_CHECK(!GetBoolArg("-PURP"));
+    BOOST_CHECK(!GetBoolArg("-PURP", true));
+    BOOST_CHECK(!GetBoolArg("-PURP", false));
 
-    ResetArgs("-noBAR=1");
-    BOOST_CHECK(!GetBoolArg("-BAR"));
-    BOOST_CHECK(!GetBoolArg("-BAR", true));
-    BOOST_CHECK(!GetBoolArg("-BAR", false));
+    ResetArgs("-noPURP=1");
+    BOOST_CHECK(!GetBoolArg("-PURP"));
+    BOOST_CHECK(!GetBoolArg("-PURP", true));
+    BOOST_CHECK(!GetBoolArg("-PURP", false));
 
-    ResetArgs("-noBAR=0");
-    BOOST_CHECK(GetBoolArg("-BAR"));
-    BOOST_CHECK(GetBoolArg("-BAR", true));
-    BOOST_CHECK(GetBoolArg("-BAR", false));
+    ResetArgs("-noPURP=0");
+    BOOST_CHECK(GetBoolArg("-PURP"));
+    BOOST_CHECK(GetBoolArg("-PURP", true));
+    BOOST_CHECK(GetBoolArg("-PURP", false));
 
-    ResetArgs("-BAR --noBAR");
-    BOOST_CHECK(GetBoolArg("-BAR"));
+    ResetArgs("-PURP --noPURP");
+    BOOST_CHECK(GetBoolArg("-PURP"));
 
-    ResetArgs("-noBAR -BAR"); // BAR always wins:
-    BOOST_CHECK(GetBoolArg("-BAR"));
+    ResetArgs("-noPURP -PURP"); // PURP always wins:
+    BOOST_CHECK(GetBoolArg("-PURP"));
 }
 
 BOOST_AUTO_TEST_SUITE_END()
